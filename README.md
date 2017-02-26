@@ -1,4 +1,4 @@
-This is a small test to check what did you learn in the bast two days.
+This is a small test to check what did you learn in the past two days.
  
 - make sure you have mocha installed globally
 - pass the test files by running the following commands :
