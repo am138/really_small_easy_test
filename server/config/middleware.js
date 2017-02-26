@@ -1,3 +1,4 @@
+var bodyParser=require('body-Parser')
 var morgan = require('morgan');
 
 module.exports = function (app, express) {
