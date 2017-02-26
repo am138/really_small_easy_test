@@ -31,7 +31,7 @@ module.exports ={
 		res.status(201).json(dataInserted);
 	},
 	getByTitle : function (req, res) {
-		Book.findOne({title:req.body.title}).exec(function(err,book){
+		Book.findOne({title:req.params.title}).exec(function(err,book){
 			if(err){
 				throw err
 			}else{

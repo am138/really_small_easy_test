@@ -2,13 +2,13 @@ var movie = require('./movieModel.js')
 //check routes.js to see what other functions need to be implemented hint:"you are missing two"
 module.exports ={
 	getMovie : function (req, res) {
-		movie.find({name : req.params.name}),function (err, movie) {
+		movie.find({name : req.params.name}).exec(function (err, movie) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
 				res.json(movie);
 			}
-		}
+		})
 	},
 	insertMovie : function (req, res) {
 		console.log(req.body)
