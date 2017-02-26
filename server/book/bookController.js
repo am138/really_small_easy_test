@@ -13,22 +13,23 @@ module.exports ={
 	},
 	//insert books controller
 	insertBooks : function (req, res) {
-
+  for (var i = 0; i < req.body.length; i++) {
+ 
 
 		var newbook = new book ({
-			auther : req.body.auther,
-			type:req.body.type,
-			pageNumber:req.body.pageNumber
+			auther : req.body[i].auther,
+			type:req.body[i].type,
+			pageNumber:req.body[i].pageNumber
 
 		});
 
 		newbook.save(function(err, newbook){
 			if(err){
 				res.status(500).send(err);
-			} else {
-				res.status(200).send(newbook);
-			};
+			} 
 		})
+	}
+	res.status(200).send(newbook);
 	},
 	getBytitle:function(req,res){
 		Book.findOne({title : req.params.title}),function (err,Book) {

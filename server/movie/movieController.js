@@ -10,21 +10,21 @@ module.exports ={
 			}
 		},
 		insertMovie : function (req, res) {
-			
+			for(var i=0 ;i<req.body.length;i++ ){
 			var newmovie = new movie ({
-				name : req.body.name,
-				director:req.body.director,
-				rate:req.body.rate
+				name : req.body[i].name,
+				director:req.body[i].director,
+				rate:req.body[i].rate
 				
 			});
 
 			newmovie.save(function(err, newmovie){
 				if(err){
 					res.status(500).send(err);
-				} else {
-					res.status(200).send(newmovie);
-				};
+				} 
 			})
+		}
+		res.status(200).send(newmovie);
 		},
 		getAllMovies : function (req, res) {
 			movie.find({}, function(err, movie) {
