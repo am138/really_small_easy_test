@@ -10,7 +10,7 @@ module.exports = function (app, express) {
 	app.get('/api/movie/', movieController.getAllMovies);
 	app.post('/api/movie/', movieController.insertMovie);
 
-	app.get('/api/movie/name', movieController.getMovie);
+	app.get('/api/movie/:name', movieController.getMovie);
 
 	
 //=============================================================================
