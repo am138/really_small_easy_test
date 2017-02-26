@@ -1,24 +1,34 @@
-
+var Book = require('./bookModel.js');
 //check routes.js to see what other functions need to be implemented. hint:"you are missing one"
-module.exports ={
+module.exports = {
 	//get all the books controller
-	getAllBooks : function (req, res) {
-		Book.find({name:req.body.name},function (err,AllBooks) {
+	getAllBooks: function (req, res) {
+		Book.find({}, function (err, AllBooks) {
 			if (err) {
 				res.status(500).send(err);
-			}else{
+			} else {
 				res.json(AllBooks)
 			}
 		})
 	},
 	//insert books controller
-	insertBooks : function (req, res) {
-			Book.create(data, function (err, dataInserted) {
+	insertBooks: function (req, res) {
+		for (var i = 0; i < req.body.length; i++) {
+			Book.create(req.body[i], function (err, dataInserted) {
 				if (err) {
 					res.status(500).send(err);
-				}else{
-					res.status(300).json(dataInserted);
 				}
+			})
+		}
+		res.status(201).json({ok:"ok"});
+	},
+	getByName: function (req, res) {
+		Book.find({ title: req.params.title }, function (err, Book) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.json(Book)
+			}
 		})
 	}
 }

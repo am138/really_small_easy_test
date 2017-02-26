@@ -51,7 +51,7 @@ describe('movies', function () {
         if (err) {
           console.log(err)
         }
-        let movie = resp.body
+        var movie = resp.body
         request(app)
           .get('/api/movie/' + movie.name)
           .end(function (err, resp) {
