@@ -51,7 +51,7 @@ describe('books', function () {
         if (err) {
           console.log(err)
         }
-        let book = resp.body
+        var book = resp.body
         request(app)
           .get('/api/book/' + book.title)
           .end(function (err, resp) {
