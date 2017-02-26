@@ -1,6 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
+require('./config/middleware')(app,express)
+require('./config/routes')(app,express)
 
 //require two files here
 
@@ -8,7 +10,7 @@ var app = express();
 /*									Database								 */
 //=============================================================================
 	var mongoURI ='mongodb://localhost/test';
-	mongoose.connect(/*database*/);
+	mongoose.connect(mongoURI);
 	db = mongoose.connection;
 
 	db.once('open',function () {
@@ -19,7 +21,7 @@ var app = express();
 //=============================================================================
 /*									Server   								 */
 //=============================================================================
-	var port = 3000;
+	var port = 8000;
 	app.listen(port , function () {
 		console.log('...Server now listening on port ' + port);
 	});
