@@ -1,24 +1,45 @@
-
+var Book = require ('./bookModel');
 //check routes.js to see what other functions need to be implemented. hint:"you are missing one"
 module.exports ={
-	//get all the books controller
-	getAllBooks : function (req, res) {
-		Book.find({name:req.body.name},function (err,AllBooks) {
+	getByName : function (req, res) {
+		Book.findOne({title : req.params.title}),function (err, book) {
 			if (err) {
 				res.status(500).send(err);
 			}else{
-				res.json(AllBooks)
+				res.json(book);
+			}
+		}
+	},
+	getAllBooks : function (req, res) {
+		Book.find().exec(function (err, allbooks) {
+			if(err){
+				res.status(500).send(err);
+			}else{
+				res.status(200).json(allbooks)
 			}
 		})
 	},
-	//insert books controller
-	insertBooks : function (req, res) {
-			Book.create(data, function (err, dataInserted) {
-				if (err) {
-					res.status(500).send(err);
-				}else{
-					res.status(300).json(dataInserted);
-				}
+	
+	insertBook : function (req, res) {
+		Book.findOne({title : req.params.title})
+		.exec(function (error, book) {
+			console.log(book)
+			if(book){
+				res.json(new Error('book already exist!'));
+			}else{
+				var newBook = new Book ({
+					title : req.body.title,
+					auther:req.body.auther,
+					pageNumber : req.body.pageNumber
+				});
+				newBook.save(function(err, newBook){
+					if(err){
+						res.status(500).send(err);
+					}else{
+						res.status(201).json(newBook)
+					};
+				});
+			}
 		})
-	}
+	} 
 }
