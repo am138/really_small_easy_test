@@ -5,7 +5,7 @@ var bookSchema = new mongoose.Schema({
 		type : String,
 		required : true
 	},
-	auther : {
+	author : {
 		type : String
 	},
 	pageNumber : {
@@ -13,6 +13,6 @@ var bookSchema = new mongoose.Schema({
 	}
 });
 
-var book = mongoose.model('book', bookSchema);
+var book = mongoose.model('Book', bookSchema);
 
 module.exports = book; 
