@@ -1,3 +1,5 @@
+var express = require('express')
+var app = express()
 var bookController = require('../book/bookController.js');
 var movieController = require('../movie/movieController.js');
 
@@ -14,6 +16,8 @@ module.exports = function (app, express) {
 /*								book route									 */
 //=============================================================================
 	//add get and post request for other routes
-	app.get('/api/book/:name', bookController.getByName)
+	app.post('/api/book/', bookController.insertBooks) //getAllBooks
+	app.get('/api/book/', bookController.getAllBooks)
+	app.get('/api/book/:name', bookController.getBook)
 };
 
