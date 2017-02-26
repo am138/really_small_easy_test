@@ -3,12 +3,15 @@ var mongoose = require('mongoose');
 var app = express();
 
 //require two files here
+require('./config/middleware.js')(app, express)
+require('./config/routes.js')(app, express)
+
 
 //=============================================================================
 /*									Database								 */
 //=============================================================================
 	var mongoURI ='mongodb://localhost/test';
-	mongoose.connect(/*database*/);
+	mongoose.connect(mongoURI);
 	db = mongoose.connection;
 
 	db.once('open',function () {
